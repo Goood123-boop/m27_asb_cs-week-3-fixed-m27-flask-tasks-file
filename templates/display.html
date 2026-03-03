@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+
+    {% if project_title %}
+        <h1>Tasks: {{ project_title }}</h1>
+        <p><a href="{{ url_for('display') }}">← All tasks</a></p>
+    {% else %}
+        <h1>All Tasks</h1>
+    {% endif %}
+
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Project</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Status</th>
+                <th>Next Steps</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in tasks %}
+            <tr>
+                <td>{{ task.datetime }}</td>
+                <td><a href="/display/{{ task.project_title }}">{{ task.project_title }}</a></td>
+                <td>{{ task.title }}</td>
+                <td>{{ task.description }}</td>
+                <td>{{ task.status }}</td>
+                <td>
+                    {% if task.status == "In Progress" %}
+                        <span class="prompt">Next: what's the immediate next action?</span>
+                    {% elif task.status == "Blocked" %}
+                        <span class="prompt">Next: what do you need to unblock this?</span>
+                    {% elif task.status == "Done" %}
+                        <span class="prompt">Next: what did completing this make possible?</span>
+                    {% endif %}
+                    {{ task.next_steps }}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <p><a href="{{ url_for('input_task') }}">Add a new task</a></p>
+{% endblock %}

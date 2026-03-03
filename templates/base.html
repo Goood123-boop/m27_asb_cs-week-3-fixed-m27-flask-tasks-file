@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Tracker</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        nav {
+            background-color: #336699;
+            padding: 12px 24px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin-right: 20px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .content {
+            max-width: 900px;
+            margin: 24px auto;
+            padding: 0 20px;
+        }
+
+        h1 {
+            color: #336699;
+        }
+
+        /* Table styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #336699;
+            color: #fff;
+        }
+
+        tr:nth-child(even) {
+            background-color: #e9e9e9;
+        }
+
+        tr:nth-child(odd) {
+            background-color: #fff;
+        }
+
+        tr:hover {
+            background-color: #d0e0f0;
+        }
+
+        /* Link styling */
+        a {
+            color: #336699;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 16px;
+            margin-top: 40px;
+            border-top: 1px solid #ccc;
+            color: #777;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="{{ url_for('index') }}">Home</a>
+        <a href="{{ url_for('display') }}">View Tasks</a>
+        <a href="{{ url_for('input_task') }}">Add Task</a>
+    </nav>
+
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+
+    <footer>
+        IB Computer Science &mdash; Task Tracker
+    </footer>
+</body>
+</html>

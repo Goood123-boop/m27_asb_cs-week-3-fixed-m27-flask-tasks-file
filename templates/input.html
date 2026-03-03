@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Add New Task</h1>
+
+    <!-- This datalist powers the autocomplete on the project_title field below. -->
+    <!-- It's already wired up — the options come from projects already in tasks.csv. -->
+    <datalist id="project-suggestions">
+        {% for p in projects %}
+        <option value="{{ p }}">
+        {% endfor %}
+    </datalist>
+
+    <!-- TODO: Create a form that submits to this same route via POST -->
+    <!-- Your form needs these fields: -->
+    <!--   project_title: text input — connect it to the datalist above:          -->
+    <!--     <input type="text" name="project_title" list="project-suggestions">  -->
+    <!--   title: text input                                                       -->
+    <!--   description: textarea                                                  -->
+    <!--   status: select dropdown with options: In Progress, Blocked, Done       -->
+    <!--   next_steps: text input                                                  -->
+    <!-- Don't forget: action="/input" method="POST" and a submit button          -->
+
+    <p><em>Build your form here!</em></p>
+    <p><a href="{{ url_for('display') }}">View existing tasks</a></p>
+{% endblock %}
