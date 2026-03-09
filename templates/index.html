@@ -1,9 +1,53 @@
 {% extends "base.html" %}
+
 {% block content %}
-    <h1>Task Tracker</h1>
-    <p>Track your work. Every task you log here is a record of what you built and what comes next.</p>
-    <ul>
-        <li><a href="{{ url_for('display') }}">View all tasks</a></li>
-        <li><a href="{{ url_for('input_task') }}">Add a new task</a></li>
-    </ul>
+  <h1>Task Tracker</h1>
+  <p>Track your work. Every task you log here is a record of what you built and what comes next.</p>
+  <ul>
+    <li><a href="{{ url_for('display') }}">View all tasks</a></li>
+    <li><a href="{{ url_for('input_task') }}">Add a new task</a></li>
+  </ul>
+
+  <h1>Add Task</h1>
+
+  <form action="{{ url_for('input_task') }}" method="POST">
+    <p>
+      <label>Project title</label><br>
+      <input type="text" name="project_title" list="project-suggestions" required>
+    </p>
+
+    <p>
+      <label>Task title</label><br>
+      <input type="text" name="title" required>
+    </p>
+
+    <p>
+      <label>Description</label><br>
+      <textarea name="description" required></textarea>
+    </p>
+
+    <p>
+      <label>Status</label><br>
+      <select name="status" required>
+        <option value="In Progress">In Progress</option>
+        <option value="Blocked">Blocked</option>
+        <option value="Done">Done</option>
+      </select>
+    </p>
+
+    <p>
+      <label>Next steps</label><br>
+      <input type="text" name="next_steps" required>
+    </p>
+
+    <p>
+      <button type="submit">Add Task</button>
+    </p>
+  </form>
+
+  <datalist id="project-suggestions">
+    {% for project in projects %}
+      <option value="{{ project }}"></option>
+    {% endfor %}
+  </datalist>
 {% endblock %}
